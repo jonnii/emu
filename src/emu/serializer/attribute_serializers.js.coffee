@@ -23,3 +23,10 @@ Emu.AttributeSerializers =
     
     deserialize: (value) -> 
       if Ember.isEmpty(value) then null else value
+
+  datetime:
+    serialize: (value) ->
+      return null if Ember.isEmpty(value)
+      # not sure if toISOString is in every browser... might need
+      # to format differently
+      return value.toISOString()

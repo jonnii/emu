@@ -101,3 +101,17 @@ describe "Emu.AttributeSerializers", ->
           @result = Emu.AttributeSerializers["boolean"].deserialize(undefined)
         it "should be null", ->
           expect(@result).toBeNull()
+
+    describe "datetime", ->
+      describe 'serialize', ->
+        describe 'undefined', ->
+          beforeEach ->
+            @result = Emu.AttributeSerializers['datetime'].serialize(undefined)
+          it "should be null", ->
+            expect(@result).toBeNull()
+        describe 'with date', ->
+          beforeEach ->
+            date = new Date(2013, 4, 15, 14, 22, 50, 12)
+            @result = Emu.AttributeSerializers['datetime'].serialize(date)
+          it 'should format date', ->
+            expect(@result).toEqual('2013-05-15T18:22:50.012Z')
